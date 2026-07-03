@@ -449,7 +449,7 @@ questionDB.set("Physics", [
     { diff: 4, q: "Which of the following is a scalar quantity?", options: ["Work", "Velocity", "Force", "Displacement"], a: "Work", subTopic: "Vectors" },
     { diff: 5, q: "The cross product of two parallel vectors is:", options: ["Zero vector", "Unit vector", "One", "Infinity"], a: "Zero vector", subTopic: "Vectors" },
     { diff: 6, q: "Newton's second law of motion gives the measure of:", options: ["Force", "Momentum", "Acceleration", "Inertia"], a: "Force", subTopic: "Newtonian Mechanics" },
-    { diff: 7, q: "What is the escape velocity from Earth?", options: ["11.2 km/s", "9.8 m/s", "3.0 x 10^8 m/s", "11.2 m/s"], a: "11.2 km/s", subTopic: "Gravitation" },
+    { diff: 7, q: "What is the escape velocity from Earth?", options: ["11.2 km/s", "9.8 m/s", "3.0 x 10<sup>8</sup> m/s", "11.2 m/s"], a: "11.2 km/s", subTopic: "Gravitation" },
     { diff: 8, q: "In an adiabatic process, which of the following is constant?", options: ["Heat (Q)", "Temperature (T)", "Volume (V)", "Pressure (P)"], a: "Heat (Q)", subTopic: "Thermodynamics" },
     { diff: 9, q: "Which thermodynamic law defines temperature?", options: ["Zeroth Law", "First Law", "Second Law", "Third Law"], a: "Zeroth Law", subTopic: "Thermodynamics" },
     { diff: 7, q: "The SI unit of magnetic flux is:", options: ["Weber", "Tesla", "Henry", "Farad"], a: "Weber", subTopic: "Electromagnetism" },
@@ -460,13 +460,13 @@ questionDB.set("Physics", [
 
 // HSC Chemistry
 questionDB.set("Chemistry", [
-    { diff: 4, q: "What is the oxidation number of O in H2O2?", options: ["-1", "-2", "+1", "+2"], a: "-1", subTopic: "Quantitative Chemistry" },
+    { diff: 4, q: "What is the oxidation number of O in H<sub>2</sub>O<sub>2</sub>?", options: ["-1", "-2", "+1", "+2"], a: "-1", subTopic: "Quantitative Chemistry" },
     { diff: 5, q: "Which rule states that electrons fill orbitals of lowest energy first?", options: ["Aufbau Principle", "Hund's Rule", "Pauli Exclusion Principle", "Bohr's Postulate"], a: "Aufbau Principle", subTopic: "Atomic Structure" },
-    { diff: 6, q: "Which bond is found in an N2 molecule?", options: ["Triple bond", "Double bond", "Single bond", "Ionic bond"], a: "Triple bond", subTopic: "Chemical Bonding" },
-    { diff: 7, q: "What is the shape of a water (H2O) molecule?", options: ["V-shaped (Bent)", "Linear", "Tetrahedral", "Trigonal Planar"], a: "V-shaped (Bent)", subTopic: "Chemical Bonding" },
+    { diff: 6, q: "Which bond is found in an N<sub>2</sub> molecule?", options: ["Triple bond", "Double bond", "Single bond", "Ionic bond"], a: "Triple bond", subTopic: "Chemical Bonding" },
+    { diff: 7, q: "What is the shape of a water (H<sub>2</sub>O) molecule?", options: ["V-shaped (Bent)", "Linear", "Tetrahedral", "Trigonal Planar"], a: "V-shaped (Bent)", subTopic: "Chemical Bonding" },
     { diff: 8, q: "In the Haber process for ammonia, the catalyst used is:", options: ["Iron (Fe)", "Vanadium(V) oxide", "Platinum (Pt)", "Nickel (Ni)"], a: "Iron (Fe)", subTopic: "Chemical Kinetics" },
     { diff: 8, q: "Which gas law states that V is proportional to T at constant P?", options: ["Charles's Law", "Boyle's Law", "Avogadro's Law", "Dalton's Law"], a: "Charles's Law", subTopic: "Environmental Chemistry" },
-    { diff: 9, q: "What is the general formula for Alkanes?", options: ["CnH2n+2", "CnH2n", "CnH2n-2", "CnH2n+1"], a: "CnH2n+2", subTopic: "Organic Chemistry" },
+    { diff: 9, q: "What is the general formula for Alkanes?", options: ["C<sub>n</sub>H<sub>2n+2</sub>", "C<sub>n</sub>H<sub>2n</sub>", "C<sub>n</sub>H<sub>2n-2</sub>", "C<sub>n</sub>H<sub>2n+1</sub>"], a: "C<sub>n</sub>H<sub>2n+2</sub>", subTopic: "Organic Chemistry" },
     { diff: 9, q: "Which reaction converts Benzene to Nitrobenzene?", options: ["Electrophilic Substitution", "Nucleophilic Addition", "Elimination", "Free Radical Substitution"], a: "Electrophilic Substitution", subTopic: "Organic Chemistry" },
     { diff: 10, q: "Which reagent is used in Tollen's test for aldehydes?", options: ["Ammoniacal Silver Nitrate", "Copper(II) Sulfate", "Potassium Dichromate", "Bromine Water"], a: "Ammoniacal Silver Nitrate", subTopic: "Organic Chemistry" },
     { diff: 10, q: "The pH of a 0.01M HCl solution is:", options: ["2", "1", "3", "12"], a: "2", subTopic: "Acid-Base Equilibria" }
@@ -945,14 +945,14 @@ function loadNextQuestion() {
     if (gameMode === 'city') {
         qText = `(Route: ${currentPath[routeIndex-1]} &rarr; ${currentPath[routeIndex]}) ` + qText;
     }
-    document.getElementById('question-text').innerText = qText;
+    document.getElementById('question-text').innerHTML = qText;
     
     let optContainer = document.getElementById('options-container');
     optContainer.innerHTML = '';
     
     currentQuestion.options.forEach(opt => {
         let btn = document.createElement('button');
-        btn.innerText = opt;
+        btn.innerHTML = opt;
         btn.onclick = () => checkAnswer(opt, btn);
         optContainer.appendChild(btn);
     });
@@ -1014,13 +1014,13 @@ function useUndo() {
     
     document.getElementById('q-category').innerText = currentQuestion.cat;
     document.getElementById('diff-display').innerText = currentQuestion.diff;
-    document.getElementById('question-text').innerText = currentQuestion.q + " (Undone)";
+    document.getElementById('question-text').innerHTML = currentQuestion.q + " (Undone)";
     
     let optContainer = document.getElementById('options-container');
     optContainer.innerHTML = '';
     currentQuestion.options.forEach(opt => {
         let btn = document.createElement('button');
-        btn.innerText = opt;
+        btn.innerHTML = opt;
         btn.onclick = () => checkAnswer(opt, btn);
         optContainer.appendChild(btn);
     });
