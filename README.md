@@ -1,6 +1,6 @@
 # BrainQuest: The Ultimate Knowledge Arena
 
-🎮 **[Play the Live Game Here!](https://nahidreza45.github.io/dsa_project/)**
+🎮 **[Play the Live Game Here!](https://storied-flan-435338.netlify.app/)**
 
 Welcome to **BrainQuest**, an interactive, gamified quiz platform built specifically to demonstrate the practical application of Data Structures and Algorithms (DSA) in modern web development.
 
