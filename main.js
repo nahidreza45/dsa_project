@@ -479,7 +479,10 @@ function generateMathQuestion(difficultyLevel) {
     if (difficultyLevel > 7) ops.push('/');
     
     let op = ops[Math.floor(Math.random() * ops.length)];
-    let maxNum = difficultyLevel * 10;
+    let maxNum;
+    if (difficultyLevel <= 3) maxNum = difficultyLevel * 10;
+    else if (difficultyLevel <= 6) maxNum = difficultyLevel * 25;
+    else maxNum = difficultyLevel * difficultyLevel * 10;
     
     let n1 = Math.floor(Math.random() * maxNum) + 1;
     let n2 = Math.floor(Math.random() * maxNum) + 1;
@@ -922,8 +925,12 @@ function fillPriorityQueue() {
             }
         } else {
             let specificBank = availableQuestions.filter(q => q.cat === randCat);
-            if (specificBank.length > 0) {
-                let picked = specificBank[Math.floor(Math.random() * specificBank.length)];
+            let targetBank = specificBank.filter(q => Math.abs(q.diff - targetDiff) <= 1);
+            if (targetBank.length === 0) targetBank = specificBank.filter(q => Math.abs(q.diff - targetDiff) <= 2);
+            if (targetBank.length === 0) targetBank = specificBank;
+            
+            if (targetBank.length > 0) {
+                let picked = targetBank[Math.floor(Math.random() * targetBank.length)];
                 if (!seenQuestionsFilter.mightContain(picked.q)) {
                     questionPQ.enqueue(picked);
                     seenQuestionsFilter.add(picked.q);
